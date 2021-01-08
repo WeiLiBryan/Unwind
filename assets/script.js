@@ -49,14 +49,47 @@ function locatePark(zipCode) {
 
         // Construct a map making object containing all information needed
         for (var i=0; i < 5; i++){
-            var tempOBJ = {lat: "",lon: ""}
+            var tempOBJ = {lat: "",lon: "", title: ""}
             tempOBJ.lat = response.result[i].geometry.location.lat;
             tempOBJ.lon = response.result[i].geometry.location.lon;
+            tempOBJ.title = response.result[i].name;
             latNlon.push(tempOBJ);
         }
 
         drawMap(latNlon);
     });
+}
+
+function drawMap(mapMaker){
+
+}
+
+function initMap() {
+    var map;
+
+    // map = new google.maps.Map(document.getElementById("map"), {
+    //     center: { lat: -34.397, lng: 150.644 },
+    //     zoom: 8,
+    // });
+
+    // Map construction
+    var map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 5,
+        center: myLatLng,
+    });
+
+    // Places markers    
+    for (var i=0; i<mapMaker.length; i++) {
+        var myLatLng = { lat: mapMaker[i].lat, lng: mapMaker[i].lon };
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map,
+            title: mapMaker[i].title
+        });
+
+        marker.setMap(map);
+    }
 }
 
 
