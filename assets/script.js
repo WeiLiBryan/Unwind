@@ -18,6 +18,18 @@ $('.INFO-FIELD-SEARCH-BTN').on("click", function() {
 
 });
 
+// ONCE SAVE BUTTON FOR BOOK FIELDS IS CLICKED
+$('.BOOK-PREF-SAVE').on("click", function() {
+    readingPreferences();
+});
+
+
+$('.bookOption').on("click", function() {
+    // SELECTS BOOK CHOICE CLASS/DIV ON SIDEBAR AND SAVES THE BOOK NAME TO IT
+    $('.bookChoice').text(this.data);
+});
+
+
 function checkWeather(zipCode) {
     
     var queryURL = "api.openweathermap.org/data/2.5/weather?q="+ zipCode + "&appid=" + weatherApiKey;
@@ -29,16 +41,16 @@ function checkWeather(zipCode) {
         console.log("Weather API Response: " + response);
         var weatherDesc = reponse.weather.description;
         if (weatherDesc === "clear sky"){
-            locatePark(zipCode);
+            locate(zipCode, "park");
         }
         else {
-            generateModal("bad");
+            locate(zipCode, "coffee shop");
         }
     });
 }
 
-function locatePark(zipCode) {
-    var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=park+in+" + zipCode + "&key=" + googlePlacesApiKey;
+function locate(zipCode, location) {
+    var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + location + "in" + zipCode + "&key=" + googlePlacesApiKey;
     var latNlon = [];
 
     $.ajax ({
@@ -49,14 +61,18 @@ function locatePark(zipCode) {
 
         // Construct a map making object containing all information needed
         for (var i=0; i < 5; i++){
-            var tempOBJ = {lat: "",lon: "", title: ""}
+            var tempOBJ = {lat: "",lon: "", title: "", address: "", thumbnail: ""}
             tempOBJ.lat = response.result[i].geometry.location.lat;
             tempOBJ.lon = response.result[i].geometry.location.lon;
             tempOBJ.title = response.result[i].name;
+            tempOBJ.address = response.result[i].formatted_address;
+            tempOBJ.thumbnail = response.result[i].
+
             latNlon.push(tempOBJ);
         }
 
         drawMap(latNlon);
+        generateLocationPreview(latNlon);
     });
 }
 
@@ -154,8 +170,9 @@ function generateBookPreview(bookList) {
     for (var l=0; l<bookList.length; l++){
         // CARD DIV
         var card = $('<div>');
-        card.attr('class', 'card');
+        card.attr('class', 'card bookOption');
         card.attr('style', 'width: 300px;');
+        card.attr('data-name', bookList[l].title);
 
         // BOOK TITLE DIV
         var cardHeader = $('<div>');
@@ -189,6 +206,46 @@ function generateBookPreview(bookList) {
 
         // APPENDS TO WHERE WE WILL PUT THE BOOKS
         $('.BOOK-DIV').append(card);
+    }
+}
+
+// GENERATES CARDS FOR THE LOCATION
+function generateLocationPreview(latNlon) {
+
+    for (var l=0; l<latNlon.length; l++){
+        // CARD DIV
+        var card = $('<div>');
+        card.attr('class', 'card locationChoice');
+        card.attr('style', 'width: 300px;');
+        card.attr('data-name', latNlon[l].title);
+
+        // TITLE DIV
+        var cardHeader = $('<div>');
+        cardHeader.attr('class', 'card-divider');
+        cardHeader.text(latNlon[l].title);
+        
+        // THUMBNAIL
+        var thumbnail = $('<img>');
+        thumbnail.attr('src', latNlon[l].thumbnail);
+
+        // CONTAINER FOR ADDRESS
+        var contentContainer = $('<div>');
+        contentContainer.attr('class', 'card-section');
+
+        // ADDRESS
+        var address = $('<p>');
+        address.text(latNlon[l].address);
+
+        // APPEND ADDRESS
+        contentContainer.append(address); 
+
+        // APPEND HEADER, THUMBNAIL AND CARD CONTENT TO CARD DIV
+        card.append(cardHeader);
+        card.append(thumbnail);
+        card.append(contentContainer);
+
+        // APPENDS TO WHERE WE WILL PUT THE BOOKS
+        $('.LOCATION-DIV').append(card);
     }
 }
 
