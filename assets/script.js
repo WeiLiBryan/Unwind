@@ -8,12 +8,14 @@ $('.INFO-FIELD-SEARCH-BTN').on("click", function() {
     // CHECKS ZIP CODE ENTERED IN INPUT FIELD
     var zipCode = $(".ZIP-INPUT-FIELD").val().trim();
 
+    // UNHIDES THE MODAL
+    $('MODAL-CLASS').attr('display', 'block');
+
     if (zipCode.length === 5) {
         checkWeather(zipCode);
     }
     else {
-        // WARNING
-        generateModal("error");
+        // ERROR MESSAGE
     }
 
 });
@@ -23,11 +25,31 @@ $('.BOOK-PREF-SAVE').on("click", function() {
     readingPreferences();
 });
 
+// ONCE LOCATION CARD IS CLICKED
+$('.locationOption').on("click", function() {
+    // SELECTS BOOK CHOICE CLASS/DIV ON SIDEBAR AND SAVES THE BOOK NAME TO IT
+    $('.locationChoice').text(this.data);
 
+    // HIDES THE MODAL ONCE THE CARD IS CLICKED
+    $('.MODAL-CLASS').attr('display', 'none');
+});
+
+// ONCE BOOK CARD IS CLICKED
 $('.bookOption').on("click", function() {
     // SELECTS BOOK CHOICE CLASS/DIV ON SIDEBAR AND SAVES THE BOOK NAME TO IT
     $('.bookChoice').text(this.data);
+
+    // HIDES THE MODAL ONCE THE CARD IS CLICKED
+    $('.MODAL-CLASS').attr('display', 'none');
 });
+
+// Convert address tags to google map links - Copyright Michael Jasper 2011
+$('.address').each(function () {
+    var link = "<a href='http://maps.google.com/maps?q=" + encodeURIComponent( $(this).text() ) + "' target='_blank'>" + $(this).text() + "</a>";
+    $(this).html(link);
+});
+
+
 
 
 function checkWeather(zipCode) {
@@ -134,6 +156,8 @@ function generateModal(str) {
         // Prompt user yes or no if they want to visit a coffee shop instead
         // if yes execute locateShop();
     }
+
+
 }
 
 function readingPreferences() {
@@ -205,7 +229,7 @@ function generateBookPreview(bookList) {
         card.append(contentContainer);
 
         // APPENDS TO WHERE WE WILL PUT THE BOOKS
-        $('.BOOK-DIV').append(card);
+        $('.MODAL-CONTENT').append(card);
     }
 }
 
@@ -215,7 +239,7 @@ function generateLocationPreview(latNlon) {
     for (var l=0; l<latNlon.length; l++){
         // CARD DIV
         var card = $('<div>');
-        card.attr('class', 'card locationChoice');
+        card.attr('class', 'card locationOption');
         card.attr('style', 'width: 300px;');
         card.attr('data-name', latNlon[l].title);
 
@@ -235,6 +259,7 @@ function generateLocationPreview(latNlon) {
         // ADDRESS
         var address = $('<p>');
         address.text(latNlon[l].address);
+        address.attr('class', 'address');
 
         // APPEND ADDRESS
         contentContainer.append(address); 
