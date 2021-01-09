@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foundation Starter Template</title>
-    <!-- <link rel="stylesheet" href="css/foundation.css" /> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Compressed CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
         integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
@@ -14,34 +14,115 @@
     <!-- Compressed JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="/assets/style.css" /> -->
 </head>
-<div class="title-bar">
-    <div class="title-bar-left">
-        <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
-            <ul class="submenu menu verticle" data-submenu>
-                <li><a href="#Home">Home</a> </li>
-                <li><a href="#Parks Near Me">Parks Near Me</a></li>
-                <li><a href="#Books for Me">Books For Me</a></li>
-                <li><a href="#What's the weather?">What's the weather?</a></li>
-                <li><a href="#Grab a Coffee">Grab a Coffee</a></li>
-            </ul>
-            <div>
-                <button class="menu-icon" data-toggle="offCanvasLeft" type="button"></button>
-                <span class="title-bar-title">Unwind</span>
+
+<body>
+    <h1>Unwind: <small>Be a human.</small></h1>
+    <p>Insert the story of the app here. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet assumenda
+        cumque earum ducimus? Veniam,
+        voluptate est. Dignissimos alias possimus at iste quia illo accusantium excepturi quisquam, harum amet! Quod,
+        quo.</p>
+
+    <!-- "Is active" class means it opens automatically. I probably only want this for the first one.  -->
+    <!-- 1. ACCORDION : Parks Near Me -->
+    <div class="grid-x grid-padding-x">
+        <div class="large-2 cell">
+            <div class="search-results-div" style="border:1px solid grey">
+                <p>Relaxation Menu:</p>
+            </div>
+        </div>
+        <div class="large-10 cell">
+            <div class="accordion-div">
+                <ul class="accordion" data-accordion>
+                    <li class="accordion-item is-active" data-accordion-item>
+                        <a href="#" class="accordion-title">Parks Near Me</a>
+                        <div class="accordion-content" data-tab-content>
+                            <!-- Here inser the form for the zipcode -->
+                            <form>
+                                <div>
+                                    <label>Zip Code</label>
+                                    <input type="text" placeholder="Enter 5 digit zipcode">
+                                </div>
+                            </form>
+
+                            <p></p>
+                            <a href="#">Nowhere to Go</a>
+                        </div>
+                    </li>
+                    <!-- 2. ACCORDION: Books for Me -->
+                    <li class="accordion-item" data-accordion-item>
+                        <a href="#" class="accordion-title">Books For Me</a>
+                        <div class="accordion-content" data-tab-content>
+
+                            <!-- Form for the dropdown with selection of book genres -->
+                            <form>
+                                <div>
+                                    <label>Book Genres</label>
+                                    <select>
+                                        <option>All</option>
+                                        <option>Romance</option>
+                                        <option>Mystery</option>
+                                        <option>Fantasy</option>
+                                        <option>Sci-Fi</option>
+                                        <option>Horror</option>
+                                        <option>Young Adult</option>
+                                        <option>Non-Fiction</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>What do you want to read about?</label>
+                                    <input type="text" placeholder='Ex. "aliens", "presidents", "Italy"...'>
+                                </div>
+                            </form>
+
+
+
+                        </div>
+                    </li>
+                    <!-- 3. ACCORDION: LIBRARIES: Find a library near me! -->
+                    <li class="accordion-item" data-accordion-item>
+                        <a href="#" class="accordion-title">Libraries Near Me</a>
+                        <div class="accordion-content" data-tab-content>
+                            <form>
+                                <div>
+                                    <label>Wondering where to pick up your book? Find a library near you!</label>
+                                    <input type="text" placeholder="Enter 5 digit zipcode">
+                                </div>
+                            </form>
+
+                        </div>
+                    </li>
+                    <!-- 3. ACCORDION: Weather: Should I read outside? -->
+                    <li class="accordion-item" data-accordion-item>
+                        <a href="#" class="accordion-title">Weather: Is it a good day to read outside?</a>
+                        <div class="accordion-content" data-tab-content>
+                            <p>Panel 1. Lorem ipsum dolor</p>
+                            <a href="#">Nowhere to Go</a>
+                        </div>
+                    </li>
+                    <!-- 4. ACCORDION: Coffee Shops Near: I'd like to avoid the weather   -->
+                    <li class="accordion-item" data-accordion-item>
+                        <a href="#" class="accordion-title">Coffee Shops Near Me: Let's avoid the weather today!</a>
+                        <div class="accordion-content" data-tab-content>
+                            <p>Panel 1. Lorem ipsum dolor</p>
+                            <a href="#">Nowhere to Go</a>
+                        </div>
+                    </li>
+                    <!-- ... -->
+                </ul>
             </div>
         </div>
     </div>
-</div>
 
-<body>
-    <div id="home" class="hero-section">
-        <div class="hero-section-text">
-            <h1>Hello, world!</h1>
-            <h5>Unwind</h5>
-        </div>
 
-    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+        integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).foundation();
+    </script>
 
 </body>
 
