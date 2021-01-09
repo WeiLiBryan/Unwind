@@ -50,8 +50,6 @@ $('.address').each(function () {
 });
 
 
-
-
 function checkWeather(zipCode) {
     
     var queryURL = "api.openweathermap.org/data/2.5/weather?q="+ zipCode + "&appid=" + weatherApiKey;
@@ -273,11 +271,6 @@ function generateLocationPreview(latNlon) {
         $('.LOCATION-DIV').append(card);
     }
 }
-
-
-
-
-
 
 
 });
