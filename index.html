@@ -17,6 +17,15 @@
     <!-- <link rel="stylesheet" href="/assets/style.css" /> -->
 </head>
 
+<!-- Hero Image -->
+<!-- <div class="hero-image">
+    <div class="hero-text">
+        <h1>I am John Doe</h1>
+        <p>And I'm a Photographer</p>
+        <button>Hire me</button>
+    </div>
+</div> -->
+
 <body>
     <h1>Unwind: <small>Be a human.</small></h1>
     <p>Insert the story of the app here. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet assumenda
@@ -45,9 +54,9 @@
                                     <input type="text" placeholder="Enter 5 digit zipcode">
                                 </div>
                             </form>
-
-                            <p></p>
-                            <a href="#">Nowhere to Go</a>
+                            <button class="hollow button" href="#">Submit</button>
+                            <!-- <p></p>
+                            <a href="#">Nowhere to Go</a> -->
                         </div>
                     </li>
                     <!-- 2. ACCORDION: Books for Me -->
@@ -75,9 +84,7 @@
                                     <input type="text" placeholder='Ex. "aliens", "presidents", "Italy"...'>
                                 </div>
                             </form>
-
-
-
+                            <button class="hollow button" href="#">Submit</button>
                         </div>
                     </li>
                     <!-- 3. ACCORDION: LIBRARIES: Find a library near me! -->
@@ -90,23 +97,42 @@
                                     <input type="text" placeholder="Enter 5 digit zipcode">
                                 </div>
                             </form>
-
+                            <button class="hollow button" href="#">Submit</button>
                         </div>
                     </li>
                     <!-- 3. ACCORDION: Weather: Should I read outside? -->
                     <li class="accordion-item" data-accordion-item>
-                        <a href="#" class="accordion-title">Weather: Is it a good day to read outside?</a>
+                        <a href="#" class="accordion-title">Weather: Should I unwind outside?</a>
                         <div class="accordion-content" data-tab-content>
-                            <p>Panel 1. Lorem ipsum dolor</p>
-                            <a href="#">Nowhere to Go</a>
+                            <form>
+                                <div>
+                                    <label>Should you brave the elements today?</label>
+                                    <input type="text" placeholder="Enter 5 digit zipcode to find out!">
+                                </div>
+                            </form>
+                            <button class="hollow button" href="#">Submit</button>
+
                         </div>
                     </li>
                     <!-- 4. ACCORDION: Coffee Shops Near: I'd like to avoid the weather   -->
                     <li class="accordion-item" data-accordion-item>
                         <a href="#" class="accordion-title">Coffee Shops Near Me: Let's avoid the weather today!</a>
                         <div class="accordion-content" data-tab-content>
-                            <p>Panel 1. Lorem ipsum dolor</p>
-                            <a href="#">Nowhere to Go</a>
+                            <form>
+                                <div>
+                                    <label>Raining today? Or do you just hate the sun? Find a coffee shop
+                                        instead.</label>
+                                    <input type="text" placeholder="Enter 5 digit zipcode">
+                                </div>
+                            </form>
+                            <!-- Inspecting the value of the underlying input should be done by evaluating the checked property of said input. -->
+                            <div class="switch tiny">
+                                <input class="switch-input" id="tinySwitch" type="checkbox" name="openNowSwitch">
+                                <label class="switch-paddle" for="tinySwitch">
+                                    <span class="show-for-sr">Open Now</span>
+                                </label>
+                            </div>
+                            <button class="hollow button" href="#">Submit</button>
                         </div>
                     </li>
                     <!-- ... -->
@@ -115,7 +141,13 @@
         </div>
     </div>
 
-
+    <!-- REVEAL -->
+    <div class="reveal" id="exampleModal1" data-reveal>
+        <div class="modalContent"></div>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
