@@ -4,9 +4,9 @@ var googlePlacesApiKey = "AIzaSyBkWn72ID7mx-gdIlXW5iUCHaT8-O-3lBA";
 $(document).ready(function(){
 
 // ONCE SEARCH BUTTON IS CLICKED
-$('.INFO-FIELD-SEARCH-BTN').on("click", function() {
+$('.zipCodeInput').on("click", function() {
     // CHECKS ZIP CODE ENTERED IN INPUT FIELD
-    var zipCode = $(".ZIP-INPUT-FIELD").val().trim();
+    var zipCode = $(".zipInputField").val().trim();
 
     // UNHIDES THE MODAL
     $('MODAL-CLASS').attr('display', 'block');
