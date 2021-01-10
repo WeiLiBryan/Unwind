@@ -91,6 +91,7 @@ function locate(zipCode, location) {
             latNlon.push(tempOBJ);
         }
 
+        generateModal("location");
         drawMap(latNlon);
         generateLocationPreview(latNlon);
     });
@@ -111,7 +112,7 @@ function drawMap(mapMaker){
 
     img.attr("src", staticMapURL);
     
-    $(".IMG-DIV-TARGET").append(img);
+    $(".").append(img);
 }
 
 // function initMap() {
@@ -271,6 +272,49 @@ function generateLocationPreview(latNlon) {
         $('.LOCATION-DIV').append(card);
     }
 }
+
+function generateModal(str) {
+    
+    if (str = "location"){
+        // BUILD LOCATION MODAL
+        var body = $('modalContent');
+        
+        var row = $("<div>");
+        row.attr('class', 'grid-x');
+
+        var col = $("<div>");
+        col.attr('class', 'cell-small-6');
+
+
+        row.append(col);
+        row.append(col);
+    }
+}
+
+// div class="reveal" id="exampleModal1" data-reveal>
+//         <div class="modalContent">
+//             <div class="row">
+//                 - <div class = "col-sm-6">MAP</div>
+//                 - <div class="col-sm-6">
+//                     <div class="row">
+//                         <div class ="col-sm-4">CARD ONE</div>
+//                         <div class ="col-sm-4">CARD 2</div>
+//                         <div class ="col-sm-4">CARD 3</div>
+//                     </div>
+//                     <div class="row">
+//                         <div class ="col-sm-4">CARD 4</div>
+//                         <div class ="col-sm-4">CARD 5</div>
+//                         <div class ="col-sm-4">CARD 6</div>
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//         <button class="close-button" data-close aria-label="Close modal" type="button">
+//             <span aria-hidden="true">&times;</span>
+//         </button>
+//     </div>
+
+
 
 
 });
