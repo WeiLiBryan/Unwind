@@ -8,10 +8,10 @@ $(document).ready(function() {
         // CHECKS ZIP CODE ENTERED IN INPUT FIELD
         event.preventDefault();
         var zipCode = $(".zipInputField").val().trim();
-        console.log(zipCode);   
 
         // UNHIDES THE MODAL
-        $('MODAL-CLASS').attr('display', 'block');
+        $(".location").empty();
+        checkWeather();
 
         if (zipCode.length === 5) {
             checkWeather(zipCode);
@@ -25,6 +25,11 @@ $(document).ready(function() {
 // ONCE SAVE BUTTON FOR BOOK FIELDS IS CLICKED
 $('.BOOK-PREF-SAVE').on("click", function() {
     readingPreferences();
+});
+
+$('.LIBRARY-ZIP-CODE-BTN-SUBMIT').on("click", function() {
+    var zipCode = $('LIBRARY-ZIP-INPUT-FIELD').val().trim();
+    locate(zipCode, "library");
 });
 
 // ONCE LOCATION CARD IS CLICKED
@@ -51,7 +56,6 @@ $('.address').each(function () {
     $(this).html(link);
 });
 
-
 function checkWeather(zipCode) {
     
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip="+ zipCode + "&appid=" + weatherApiKey;
@@ -72,8 +76,7 @@ function checkWeather(zipCode) {
 }
 
 function locate(zipCode, location) {
-    var queryURL = "https://maps.googleapis.com/maps/api/textsearch/json?query=" + location + "+in+" + zipCode + "&key=" + googlePlacesApiKey;
-    console.log(queryURL);
+    var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + location + "+in+" + zipCode + "&key=" + googlePlacesApiKey;
 
     var latNlon = [];
 
@@ -87,7 +90,7 @@ function locate(zipCode, location) {
         for (var i=0; i < 5; i++){
             var tempOBJ = {lat: "",lon: "", title: "", address: "", thumbnail: ""}
             tempOBJ.lat = response.result[i].geometry.location.lat;
-            tempOBJ.lon = response.result[i].geometry.location.lon;
+            tempOBJ.lon = response.result[i].geometry.location.lng;
             tempOBJ.title = response.result[i].name;
             tempOBJ.address = response.result[i].formatted_address;
             tempOBJ.thumbnail = response.result[i].
@@ -116,7 +119,7 @@ function drawMap(mapMaker){
 
     img.attr("src", staticMapURL);
     
-    $(".").append(img);
+    $("#locationMap").append(img);
 }
 
 // function initMap() {
@@ -147,21 +150,6 @@ function drawMap(mapMaker){
 //     }
 
 // }
-
-
-function generateModal(str) {
-    if (str === "error"){
-        // incorrect zip code case
-    }
-
-    if (str === "bad") {
-        // bad weather case
-        // Prompt user yes or no if they want to visit a coffee shop instead
-        // if yes execute locateShop();
-    }
-
-
-}
 
 function readingPreferences() {
     var genre = $('.GENRE-INPUT-DROPDOWN').val();
@@ -273,25 +261,42 @@ function generateLocationPreview(latNlon) {
         card.append(contentContainer);
 
         // APPENDS TO WHERE WE WILL PUT THE BOOKS
-        $('.LOCATION-DIV').append(card);
+        $('#location' + l).append(card);
     }
 }
 
 function generateModal(str) {
     
+    // BUILD LOCATION MODAL
     if (str = "location"){
-        // BUILD LOCATION MODAL
         var body = $('modalContent');
-        
-        var row = $("<div>");
-        row.attr('class', 'grid-x');
-
-        var col = $("<div>");
-        col.attr('class', 'cell-small-6');
-
-
-        row.append(col);
-        row.append(col);
+        // var row = $("<div>");
+        // row.attr('class', 'grid-x');
+        // var col = $("<div>");
+        // col.attr('class', 'cell-small-6');
+        // row.append(col);
+        // row.append(col);
+        var html = '<div class="grid-x">';
+            html+= '<div class = "small-6-cell" ID="locationMap">MAP</div>';
+            html+= '<div class="small-6-cell">';
+            html+= '<div class="grid-x">';
+            html+= '<div class ="small-4-cell" ID="location0">CARD ONE</div>';
+            html+= '<div class ="small-4-cell" ID="location1">CARD 2</div>';
+            html+= '<div class ="small-4-cell" ID="location2">CARD 3</div>';
+            html+= '</div>';
+            html+= '<div class="grid-x">';
+            html+= '<div class ="small-4-cell" ID="location3">CARD 4</div>';
+            html+= '<div class ="small-4-cell" ID="location4">CARD 5</div>';
+            html+= '<div class ="small-4-cell" ID="location5">CARD 6</div>';
+            html+= '</div>';
+            html+= '</div>';
+            html+= '</div>';
+            html+= '</div>';
+            // html+= '<button class="close-button" data-close aria-label="Close modal" type="button">';
+            // html+= '<span aria-hidden="true">&times;</span>';
+            // html+= '</button>';
+            html+= '</div>';
+            body.html(html);
     }
 }
 
