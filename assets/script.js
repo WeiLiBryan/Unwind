@@ -1,24 +1,26 @@
 var weatherApiKey = "c8cbf2d95a5dea77ab7ea30913acbe6d";
 var googlePlacesApiKey = "AIzaSyBkWn72ID7mx-gdIlXW5iUCHaT8-O-3lBA";
 
-$(document).ready(function(){
+$(document).ready(function() {
 
-// ONCE SEARCH BUTTON IS CLICKED
-$('.INFO-FIELD-SEARCH-BTN').on("click", function() {
-    // CHECKS ZIP CODE ENTERED IN INPUT FIELD
-    var zipCode = $(".ZIP-INPUT-FIELD").val().trim();
+    // ONCE SEARCH BUTTON IS CLICKED
+    $(".zipCodeInput").on("click", function(event) {
+        // CHECKS ZIP CODE ENTERED IN INPUT FIELD
+        event.preventDefault();
+        var zipCode = $(".zipInputField").val().trim();
+        console.log(zipCode);
 
-    // UNHIDES THE MODAL
-    $('MODAL-CLASS').attr('display', 'block');
+        // UNHIDES THE MODAL
+        $('MODAL-CLASS').attr('display', 'block');
 
-    if (zipCode.length === 5) {
-        checkWeather(zipCode);
-    }
-    else {
-        // ERROR MESSAGE
-    }
+        if (zipCode.length === 5) {
+            checkWeather(zipCode);
+        }
+        else {
+            // ERROR MESSAGE
+        }
 
-});
+    });
 
 // ONCE SAVE BUTTON FOR BOOK FIELDS IS CLICKED
 $('.BOOK-PREF-SAVE').on("click", function() {
@@ -52,14 +54,14 @@ $('.address').each(function () {
 
 function checkWeather(zipCode) {
     
-    var queryURL = "api.openweathermap.org/data/2.5/weather?q="+ zipCode + "&appid=" + weatherApiKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip="+ zipCode + "&appid=" + weatherApiKey;
 
     $.ajax ({
         url: queryURL,
         method: "GET"
     }).then(function(response) { 
         console.log("Weather API Response: " + response);
-        var weatherDesc = reponse.weather.description;
+        var weatherDesc = response.weather.description;
         if (weatherDesc === "clear sky"){
             locate(zipCode, "park");
         }
