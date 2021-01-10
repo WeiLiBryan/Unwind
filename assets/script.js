@@ -8,7 +8,7 @@ $(document).ready(function() {
         // CHECKS ZIP CODE ENTERED IN INPUT FIELD
         event.preventDefault();
         var zipCode = $(".zipInputField").val().trim();
-        console.log(zipCode);
+        console.log(zipCode);   
 
         // UNHIDES THE MODAL
         $('MODAL-CLASS').attr('display', 'block');
@@ -60,26 +60,28 @@ function checkWeather(zipCode) {
         url: queryURL,
         method: "GET"
     }).then(function(response) { 
-        console.log("Weather API Response: " + response);
-        var weatherDesc = response.weather.description;
+        console.log("Weather response: ", response);
+        var weatherDesc = response.weather[0].description;
         if (weatherDesc === "clear sky"){
             locate(zipCode, "park");
         }
         else {
-            locate(zipCode, "coffee shop");
+            locate(zipCode, "coffee");
         }
     });
 }
 
 function locate(zipCode, location) {
-    var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + location + "in" + zipCode + "&key=" + googlePlacesApiKey;
+    var queryURL = "https://maps.googleapis.com/maps/api/textsearch/json?query=" + location + "+in+" + zipCode + "&key=" + googlePlacesApiKey;
+    console.log(queryURL);
+
     var latNlon = [];
 
     $.ajax ({
         url: queryURL,
         method: "GET"
     }).then(function(response) { 
-        console.log("Google Map Response: " + response);
+        console.log("Google Map Response: ", response);
 
         // Construct a map making object containing all information needed
         for (var i=0; i < 5; i++){
@@ -172,7 +174,7 @@ function readingPreferences() {
         url: queryURL,
         method: "GET"
     }).then(function(response) { 
-        console.log("Book Results: " + response);
+        console.log("Book Results: ", response);
 
         for (var k=0; k<10; k++) {
             var tempOBJ = {isbn: "",author: "", title: "", thumbnail: ""}
