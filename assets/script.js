@@ -9,9 +9,8 @@ $(document).ready(function() {
         event.preventDefault();
         var zipCode = $(".zipInputField").val().trim();
 
-        // UNHIDES THE MODAL
+        // EMPTY ZIP FIELD TO PREPARE FOR MAP + LOCATION CARDS
         $(".location").empty();
-        checkWeather();
 
         if (zipCode.length === 5) {
             checkWeather(zipCode);
@@ -85,19 +84,17 @@ function locate(zipCode, location) {
         method: "GET"
     }).then(function(response) { 
         console.log("Google Map Response: ", response);
-
         // Construct a map making object containing all information needed
-        for (var i=0; i < 5; i++){
-            var tempOBJ = {lat: "",lon: "", title: "", address: "", thumbnail: ""}
-            tempOBJ.lat = response.result[i].geometry.location.lat;
-            tempOBJ.lon = response.result[i].geometry.location.lng;
-            tempOBJ.title = response.result[i].name;
-            tempOBJ.address = response.result[i].formatted_address;
-            tempOBJ.thumbnail = response.result[i].
+        for (var i=0; i < 6; i++){
+            var tempOBJ = {lat: "",lon: "", title: "", address: ""};
+            tempOBJ.lat = response.results[i].geometry.location.lat;
+            tempOBJ.lon = response.results[i].geometry.location.lng;
+            tempOBJ.title = response.results[i].name;
+            tempOBJ.address = response.results[i].formatted_address;
 
             latNlon.push(tempOBJ);
         }
-
+        console.log(latNlon);
         generateModal("location");
         drawMap(latNlon);
         generateLocationPreview(latNlon);
@@ -108,14 +105,23 @@ function drawMap(mapMaker){
 
     var img = $('<img>');
 
-    var staticMapURL = "https://maps.googleapis.com/maps/api/staticmap?c&size=600x300&maptype=roadmap" +
-    "&markers=color:red%7Clabel:" + mapMaker[0].title + "%7C" + mapMaker[0].lat + "," + mapMaker[0].lon + 
-    "&markers=color:red%7Clabel:" + mapMaker[1].title + "%7C" + mapMaker[1].lat + "," + mapMaker[1].lon + 
-    "&markers=color:red%7Clabel:" + mapMaker[2].title + "%7C" + mapMaker[2].lat + "," + mapMaker[2].lon + 
-    "&markers=color:red%7Clabel:" + mapMaker[3].title + "%7C" + mapMaker[3].lat + "," + mapMaker[3].lon + 
-    "&markers=color:red%7Clabel:" + mapMaker[4].title + "%7C" + mapMaker[4].lat + "," + mapMaker[4].lon + 
-    "&key=" + googlePlacesApiKey;
+    // var staticMapURL = "https://maps.googleapis.com/maps/api/staticmap?c&size=600x300&maptype=roadmap" +
+    // "&markers=color:red%7Clabel:" + "1" + "%7C" + mapMaker[0].lat + "," + mapMaker[0].lon + 
+    // "&markers=color:red%7Clabel:" + "2" + "%7C" + mapMaker[1].lat + "," + mapMaker[1].lon + 
+    // "&markers=color:red%7Clabel:" + "3" + "%7C" + mapMaker[2].lat + "," + mapMaker[2].lon + 
+    // "&markers=color:red%7Clabel:" + "4" + "%7C" + mapMaker[3].lat + "," + mapMaker[3].lon + 
+    // "&markers=color:red%7Clabel:" + "5" + "%7C" + mapMaker[4].lat + "," + mapMaker[4].lon + 
+    // "&markers=color:red%7Clabel:" + "6" + "%7C" + mapMaker[5].lat + "," + mapMaker[5].lon + 
 
+    // "&key=" + googlePlacesApiKey;
+
+    var staticMapURL = "https://maps.googleapis.com/maps/api/staticmap?c&size=600x300&maptype=roadmap";
+    for(var n=0;n<mapMaker.length; n++){
+        staticMapURL += "&markers=color:red%7Clabel:" + (n+1) + "%7C" + mapMaker[n].lat + "," + mapMaker[n].lon;
+    }
+    staticMapURL += "&key=" + googlePlacesApiKey;
+
+    console.log(staticMapURL);
 
     img.attr("src", staticMapURL);
     
