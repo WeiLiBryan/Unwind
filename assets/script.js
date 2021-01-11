@@ -3,7 +3,6 @@ var googlePlacesApiKey = "AIzaSyBkWn72ID7mx-gdIlXW5iUCHaT8-O-3lBA";
 
 $(document).ready(function () {
 
-
     // ONCE SEARCH BUTTON IS CLICKED
     $(".zipCodeInput").on("click", function (event) {
         // CHECKS ZIP CODE ENTERED IN INPUT FIELD
@@ -310,7 +309,7 @@ $(document).ready(function () {
             var book2 = $("<div>").attr("class", "small-4-cell").attr("id", "book2");
             topRow.append(book0).append(book1).append(book2);
             container.append(topRow);
-            
+
             var bottomRow = $("<div>").attr("class", "grid-x");
             var book3 = $("<div>").attr("class", "small-4-cell").attr("id", "book3");
             var book4 = $("<div>").attr("class", "small-4-cell").attr("id", "book4");

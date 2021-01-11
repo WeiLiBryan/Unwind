@@ -58,3 +58,9 @@ label {
     color: green;
     opacity: 0.5;
 }
+
+.card-divider{    
+    background-color: green;
+    opacity: 0.5;
+
+}
