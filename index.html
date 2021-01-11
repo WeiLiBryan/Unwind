@@ -55,25 +55,11 @@
         </div>
 
         <!-- "Is active" class means it opens automatically. Probably only want this for the first one.-->
-        <!-- 1. ACCORDION : Parks Near Me -->
+        <!-- 1. ACCORDION : Books for me -->
         <div class="large-10 cell">
             <!-- <div class="accordion-div"> -->
             <ul class="accordion" data-accordion data-multi-expand="true">
                 <li class="accordion-item is-active" data-accordion-item>
-                    <a href="#" class="accordion-title">Parks Near Me</a>
-                    <div class="accordion-content" ID="relaxationSpot" data-tab-content>
-                        <form>
-                            <div>
-                                <label>Zip Code</label>
-                                <input type="text" class="zipInputField" placeholder="Enter 5 digit zipcode">
-                            </div>
-                        </form>
-                        <button class="hollow button zipCodeInput" href="#">Submit</button>
-                    </div>
-                </li>
-
-                <!-- 2. ACCORDION: Books for Me -->
-                <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Books For Me</a>
                     <div class="accordion-content" ID="bookRecs" data-tab-content>
                         <form>
@@ -98,48 +84,32 @@
                         <button class="hollow button" ID="bookSubmit" href="#">Submit</button>
                     </div>
                 </li>
-
                 <!-- 3. ACCORDION: LIBRARIES: Find a library near me! -->
-                <li class="accordion-item"  data-accordion-item>
+                <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Libraries Near Me</a>
-                    <div class="accordion-content" ID="library" data-tab-content>            
-                    </div>
-                </li>
-
-                <!-- 3. ACCORDION: Weather: Should I read outside? -->
-                <li class="accordion-item" data-accordion-item>
-                    <a href="#" class="accordion-title">Weather: Should I unwind outside?</a>
-                    <div class="accordion-content" data-tab-content>
-                        <form>
-                            <div>
-                                <label>Should you brave the elements today?</label>
-                                <input type="text" placeholder="Enter 5 digit zipcode to find out!">
-                            </div>
-                        </form>
-                        <button class="hollow button" href="#">Submit</button>
-                    </div>
-                </li>
-
-                <!-- 4. ACCORDION: Coffee Shops Near: I'd like to avoid the weather   -->
-                <li class="accordion-item" data-accordion-item>
-                    <a href="#" class="accordion-title">Coffee Shops Near Me: Let's avoid the weather today!</a>
-                    <div class="accordion-content" data-tab-content>
-                        <form>
-                            <div>
-                                <label>Raining today? Or do you just hate the sun? Find a coffee shop
-                                    instead.</label>
-                                <input type="text" placeholder="Enter 5 digit zipcode">
-                            </div>
-                        </form>
-                        <!-- Inspecting the value of the underlying input should be done by evaluating the checked property of said input. -->
-                        <div class="switch tiny">
-                            <input class="switch-input" id="tinySwitch" type="checkbox" name="openNowSwitch">
-                            <label class="switch-paddle" for="tinySwitch">
-                                <span class="show-for-sr">Open Now</span>
-                            </label>
+                    <div class="accordion-content" ID="library" data-tab-content>
+                        <div>
+                            <label>Zip Code</label>
+                            <input type="text" class="zipInputField" placeholder="Enter 5 digit zipcode">
                         </div>
+                        </form>
+                        <button class="hollow button zipCodeInput" href="#">Submit</button>
+                    </div>
+                </li>
 
-                        <button class="hollow button" href="#">Submit</button>
+
+                <!-- 2. ACCORDION: Parks Near Me -->
+                <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Parks Near Me</a>
+
+                    <div class="accordion-content" ID="relaxationSpot" data-tab-content>
+                        <form>
+                            <div>
+                                <label>Zip Code</label>
+                                <input type="text" class="zipInputField" placeholder="Enter 5 digit zipcode">
+                            </div>
+                        </form>
+                        <button class="hollow button zipCodeInput" href="#">Submit</button>
                     </div>
                 </li>
             </ul>
