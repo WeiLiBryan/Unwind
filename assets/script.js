@@ -58,14 +58,24 @@ $(document).ready(function () {
 
         // POPULATES MAIN CONTENT WITH INFORMATION OF CITY
     $(document).on("click", ".locationOption", function() {
-        console.log(this);
-        $('#summary').append(this);
+        if ($('#summary').children('.locationOption').length < 1) {
+            $('#summary').append(this);
+        }
     });
 
     $(document).on("click", ".bookOption", function() {
-        console.log(this);
-        $('#summary').append(this);
+        if ($('#summary').children('.bookOption').length < 1) {
+            $('#summary').append(this);
+        }
     });
+
+    $(document).on("click", ".libraryOption", function() {
+        if ($('#summary').children('.libraryOption').length < 1) {
+            $('#summary').append(this);
+        }
+    });
+
+
 
     function checkWeather(zipCode) {
 
@@ -215,7 +225,14 @@ $(document).ready(function () {
         for (var l = 0; l < latNlon.length; l++) {
             // CARD DIV
             var card = $('<div>');
-            card.attr('class', 'card locationOption');
+
+            if (str == "park" || str == "coffeeshop"){
+                card.attr('class', 'card locationOption');
+            }
+
+            if (str == "library"){
+                card.attr('class', 'card libraryOption');
+            }
             card.attr('style', 'width: 300px;');
             card.attr('data-name', latNlon[l].title);
 
