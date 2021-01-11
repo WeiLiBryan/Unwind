@@ -69,9 +69,11 @@ $(document).ready(function () {
             var weatherDesc = response.weather[0].description;
             if (weatherDesc === "clear sky") {
                 locate(zipCode, "park");
+                locate(zipCode, "library");
             }
             else {
-                locate(zipCode, "coffee");
+                locate(zipCode, "coffeeshop");
+                locate(zipCode, "library");
             }
         });
     }
@@ -96,13 +98,14 @@ $(document).ready(function () {
 
                 latNlon.push(tempOBJ);
             }
-            generatePreviewSkeleton("location");
-            drawMap(latNlon);
-            generateLocationPreview(latNlon);
+            //Call skeleton for either coffeeshop or park
+            generatePreviewSkeleton(location);
+            drawMap(latNlon, location);
+            generateLocationPreview(latNlon, location);
         });
     }
 
-    function drawMap(mapMaker) {
+    function drawMap(mapMaker, str) {
         var img = $('<img>');
 
         var staticMapURL = "https://maps.googleapis.com/maps/api/staticmap?c&size=600x300&maptype=roadmap";
@@ -112,15 +115,19 @@ $(document).ready(function () {
         staticMapURL += "&key=" + googlePlacesApiKey;
 
         img.attr("src", staticMapURL);
-        $("#locationMap").append(img);
+        if ( (str == "park") || (str == "coffeeshop") ) {
+            $("#locationMap").append(img);
+        } else {
+            $("#libraryMap").append(img);
+        }
     }
 
     function readingPreferences() {
         var genre = $('#genre').val();
-        var userSpec = $('#keyword').val();
+        var keyword = $('#keyword').val();
         var bookList = [];
 
-        var queryURL = "https://www.googleapis.com/books/v1/volumes?q=subject:" + genre + "&intitle:" + userSpec;
+        var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + keyword + "&subject:" + genre; 
         console.log(queryURL);
         $.ajax({
             url: queryURL,
@@ -134,7 +141,7 @@ $(document).ready(function () {
                 tempOBJ.title = response.items[k].volumeInfo.title;
                 tempOBJ.author = response.items[k].volumeInfo.authors;
                 tempOBJ.isbn = response.items[k].volumeInfo.industryIdentifiers[0].identifier;
-                tempOBJ.thumbnail = response.items[k].volumeInfo.imageLinks.thumbnail;
+                tempOBJ.thumbnail = response.items[k].volumeInfo.imageLinks.smallThumbnail;
                 bookList.push(tempOBJ);
             }
 
@@ -153,7 +160,7 @@ $(document).ready(function () {
             // CARD DIV
             var card = $('<div>');
             card.attr('class', 'card bookOption');
-            card.attr('style', 'width: 300px;');
+            card.attr('style', 'width: 300px;', 'height: 400px');
             card.attr('data-name', bookList[l].title);
 
             // BOOK TITLE DIV
@@ -163,6 +170,7 @@ $(document).ready(function () {
 
             // THUMBNAIL
             var thumbnail = $('<img>');
+            thumbnail.attr("style", "width: fit-content", "height: fit-content");
             thumbnail.attr('src', bookList[l].thumbnail);
 
             // CONTAINER FOR THE ISBN AND AUTHOR
@@ -175,7 +183,7 @@ $(document).ready(function () {
 
             // ISBN
             var isbn = $('<p>');
-            isbn.text(bookList[l].isbn);
+            isbn.text("ISNB: " + bookList[l].isbn);
 
             // APPEND AUTHOR AND ISBN 
             contentContainer.append(author);
@@ -192,7 +200,7 @@ $(document).ready(function () {
     }
 
     // GENERATES CARDS FOR THE LOCATION SELECTION PREVIEW
-    function generateLocationPreview(latNlon) {
+    function generateLocationPreview(latNlon, str) {
 
         for (var l = 0; l < latNlon.length; l++) {
             // CARD DIV
@@ -227,8 +235,15 @@ $(document).ready(function () {
             // card.append(thumbnail);
             card.append(contentContainer);
 
-            // APPENDS WHERE WE WILL PUT THE BOOKS
-            $('#location' + l).append(card);
+            // APPENDS WHERE WE WILL PUT THE LOCATION PREVIEW CARDS
+            if ( (str == "park") || (str == "coffeeshop") ) {
+                $('#location' + l).append(card);
+                console.log("Appended to #location");
+            } else {
+                $("#library" + l).append(card);
+                console.log("Appended to #library");
+
+            }
         }
     }
 
@@ -236,7 +251,7 @@ $(document).ready(function () {
     function generatePreviewSkeleton(str) {
 
         // BUILD LOCATION PREVIEW 
-        if (str = "location") {
+        if ( (str == "park") || (str == "cofeeshop") ) {
             var container = $("<div>").attr("class", "grid-x");
             var leftColumn = $("<div>").attr("class", "small-6-cell").attr("id", "locationMap");
             container.append(leftColumn);
@@ -255,14 +270,38 @@ $(document).ready(function () {
             var loc4 = $("<div>").attr("class", "small-4-cell").attr("id", "location4");
             var loc5 = $("<div>").attr("class", "small-4-cell").attr("id", "location5");
             bottomRow.append(loc3).append(loc4).append(loc5);
-            rightColumn.append(bottomRow);
-
+            rightColumn.append(bottomRow);            
             container.append(rightColumn);
-            $("#relaxationSpot").append(container);
 
+           $("#relaxationSpot").append(container);
+        }
+
+        if (str == "library") {
+            var libcontainer = $("<div>").attr("class", "grid-x");
+            var leftColumn = $("<div>").attr("class", "small-6-cell").attr("id", "libraryMap");
+            libcontainer.append(leftColumn);
+
+            var rightColumn = $("<div>").attr("class", "small-6-cell");
+
+            var topRow = $("<div>").attr("class", "grid-x");
+            var library0 = $("<div>").attr("class", "small-4-cell").attr("id", "library0");
+            var library1 = $("<div>").attr("class", "small-4-cell").attr("id", "library1");
+            var library2 = $("<div>").attr("class", "small-4-cell").attr("id", "library2");
+            topRow.append(library0).append(library1).append(library2);
+            rightColumn.append(topRow);
+
+            var bottomRow = $("<div>").attr("class", "grid-x");
+            var library3 = $("<div>").attr("class", "small-4-cell").attr("id", "library3");
+            var library4 = $("<div>").attr("class", "small-4-cell").attr("id", "library4");
+            var library5 = $("<div>").attr("class", "small-4-cell").attr("id", "library5");
+            bottomRow.append(library3).append(library3).append(library4);
+            rightColumn.append(bottomRow);            
+            libcontainer.append(rightColumn);
+
+            $("#library").append(libcontainer);
         }
         //BUILD BOOK PREVIEW
-        if (str = "book") {
+        if (str == "book") {
             var container = $("<div>").attr("class", "grid-x");
 
             var topRow = $("<div>").attr("class", "grid-x");
