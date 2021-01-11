@@ -56,6 +56,17 @@ $(document).ready(function () {
         $(this).html(link);
     });
 
+        // POPULATES MAIN CONTENT WITH INFORMATION OF CITY
+    $(document).on("click", ".locationOption", function() {
+        console.log(this);
+        $('#summary').append(this);
+    });
+
+    $(document).on("click", ".bookOption", function() {
+        console.log(this);
+        $('#summary').append(this);
+    });
+
     function checkWeather(zipCode) {
 
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipCode + "&appid=" + weatherApiKey;
@@ -182,7 +193,7 @@ $(document).ready(function () {
 
             // ISBN
             var isbn = $('<p>');
-            isbn.text("ISNB: " + bookList[l].isbn);
+            isbn.text("ISBN: " + bookList[l].isbn);
 
             // APPEND AUTHOR AND ISBN 
             contentContainer.append(author);
@@ -222,9 +233,11 @@ $(document).ready(function () {
             contentContainer.attr('class', 'card-section');
 
             // ADDRESS
-            var address = $('<p>');
+            var address = $('<a>');
             address.text(latNlon[l].address);
-            address.attr('class', 'address');
+            address.attr('href', "http://maps.google.com/maps?q=" + encodeURIComponent(latNlon[l].address));
+            address.attr('target', 'blank');
+            address.attr('style', 'color: black');
 
             // APPEND ADDRESS
             contentContainer.append(address);
