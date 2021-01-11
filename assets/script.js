@@ -99,7 +99,7 @@ $(document).ready(function () {
                 latNlon.push(tempOBJ);
             }
             //Call skeleton for either coffeeshop or park
-            generatePreviewSkeleton(location);
+            generatePreviewSkeleton(location);            
             drawMap(latNlon, location);
             generateLocationPreview(latNlon, location);
         });
@@ -251,7 +251,7 @@ $(document).ready(function () {
     function generatePreviewSkeleton(str) {
 
         // BUILD LOCATION PREVIEW 
-        if ( (str == "park") || (str == "cofeeshop") ) {
+        if ( str == "park" || str == "coffeeshop" ) {
             var container = $("<div>").attr("class", "grid-x");
             var leftColumn = $("<div>").attr("class", "small-6-cell").attr("id", "locationMap");
             container.append(leftColumn);
