@@ -118,7 +118,6 @@ $(document).ready(function () {
     function readingPreferences() {
         var genre = $('#genre').val();
         var userSpec = $('#keyword').val();
-        console.log("User's keyword: " + userSpec);
         var bookList = [];
 
         var queryURL = "https://www.googleapis.com/books/v1/volumes?q=subject:" + genre + "&intitle:" + userSpec;
@@ -139,6 +138,7 @@ $(document).ready(function () {
                 bookList.push(tempOBJ);
             }
 
+            console.log(bookList);
             $("#bookRecs").empty();
             generatePreviewSkeleton("book");
             generateBookPreview(bookList);
@@ -187,7 +187,7 @@ $(document).ready(function () {
             card.append(contentContainer);
 
             // APPENDS TO WHERE WE WILL PUT THE BOOKS
-            $('.MODAL-CONTENT').append(card);
+            $("#book" + l).append(card);
         }
     }
 
@@ -234,7 +234,6 @@ $(document).ready(function () {
 
     // BUILDS HTML SKELETON FOR A LOCATION OR BOOK SELECTION PREVIEW
     function generatePreviewSkeleton(str) {
-        $("#choiceModal").empty();
 
         // BUILD LOCATION PREVIEW 
         if (str = "location") {
@@ -263,22 +262,22 @@ $(document).ready(function () {
 
         }
         //BUILD BOOK PREVIEW
-        else if (str === "book") {
+        if (str = "book") {
             var container = $("<div>").attr("class", "grid-x");
 
             var topRow = $("<div>").attr("class", "grid-x");
-            var loc0 = $("<div>").attr("class", "small-4-cell").attr("id", "book0");
-            var loc1 = $("<div>").attr("class", "small-4-cell").attr("id", "book1");
-            var loc2 = $("<div>").attr("class", "small-4-cell").attr("id", "book2");
+            var book0 = $("<div>").attr("class", "small-4-cell").attr("id", "book0");
+            var book1 = $("<div>").attr("class", "small-4-cell").attr("id", "book1");
+            var book2 = $("<div>").attr("class", "small-4-cell").attr("id", "book2");
             topRow.append(book0).append(book1).append(book2);
             container.append(topRow);
             
             var bottomRow = $("<div>").attr("class", "grid-x");
-            var loc0 = $("<div>").attr("class", "small-4-cell").attr("id", "book3");
-            var loc1 = $("<div>").attr("class", "small-4-cell").attr("id", "book4");
-            var loc2 = $("<div>").attr("class", "small-4-cell").attr("id", "book5");
+            var book3 = $("<div>").attr("class", "small-4-cell").attr("id", "book3");
+            var book4 = $("<div>").attr("class", "small-4-cell").attr("id", "book4");
+            var book5 = $("<div>").attr("class", "small-4-cell").attr("id", "book5");
             bottomRow.append(book3).append(book4).append(book5);
-            container.append(topRow);
+            container.append(bottomRow);
 
             $("#bookRecs").append(container);
         }
