@@ -56,6 +56,27 @@ $(document).ready(function () {
         $(this).html(link);
     });
 
+        // POPULATES MAIN CONTENT WITH INFORMATION OF CITY
+    $(document).on("click", ".locationOption", function() {
+        if ($('#summary').children('.locationOption').length < 1) {
+            $('#summary').append(this);
+        }
+    });
+
+    $(document).on("click", ".bookOption", function() {
+        if ($('#summary').children('.bookOption').length < 1) {
+            $('#summary').append(this);
+        }
+    });
+
+    $(document).on("click", ".libraryOption", function() {
+        if ($('#summary').children('.libraryOption').length < 1) {
+            $('#summary').append(this);
+        }
+    });
+
+
+
     function checkWeather(zipCode) {
 
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipCode + "&appid=" + weatherApiKey;
@@ -182,7 +203,7 @@ $(document).ready(function () {
 
             // ISBN
             var isbn = $('<p>');
-            isbn.text("ISNB: " + bookList[l].isbn);
+            isbn.text("ISBN: " + bookList[l].isbn);
 
             // APPEND AUTHOR AND ISBN 
             contentContainer.append(author);
@@ -204,7 +225,14 @@ $(document).ready(function () {
         for (var l = 0; l < latNlon.length; l++) {
             // CARD DIV
             var card = $('<div>');
-            card.attr('class', 'card locationOption');
+
+            if (str == "park" || str == "coffeeshop"){
+                card.attr('class', 'card locationOption');
+            }
+
+            if (str == "library"){
+                card.attr('class', 'card libraryOption');
+            }
             card.attr('style', 'width: 300px;');
             card.attr('data-name', latNlon[l].title);
 
@@ -222,9 +250,11 @@ $(document).ready(function () {
             contentContainer.attr('class', 'card-section');
 
             // ADDRESS
-            var address = $('<p>');
+            var address = $('<a>');
             address.text(latNlon[l].address);
-            address.attr('class', 'address');
+            address.attr('href', "http://maps.google.com/maps?q=" + encodeURIComponent(latNlon[l].address));
+            address.attr('target', 'blank');
+            address.attr('style', 'color: black');
 
             // APPEND ADDRESS
             contentContainer.append(address);
