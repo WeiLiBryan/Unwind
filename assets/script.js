@@ -3,11 +3,13 @@ var googlePlacesApiKey = "AIzaSyBkWn72ID7mx-gdIlXW5iUCHaT8-O-3lBA";
 
 $(document).ready(function () {
 
+
     // ONCE SEARCH BUTTON IS CLICKED
     $(".zipCodeInput").on("click", function (event) {
         // CHECKS ZIP CODE ENTERED IN INPUT FIELD
         event.preventDefault();
         var zipCode = $(".zipInputField").val().trim();
+
 
         // EMPTY ZIP FIELD TO PREPARE FOR MAP + LOCATION CARDS
         $("#relaxationSpot").empty();
