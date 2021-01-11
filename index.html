@@ -46,7 +46,7 @@
                 <ul class="accordion" data-accordion>
                     <li class="accordion-item is-active" data-accordion-item>
                         <a href="#" class="accordion-title">Parks Near Me</a>
-                        <div class="accordion-content location" data-tab-content>
+                        <div class="accordion-content" ID="relaxationSpot" data-tab-content>
                             <!-- Here inser the form for the zipcode -->
                             <form>
                                 <div>
@@ -84,7 +84,7 @@
                                     <input type="text" placeholder='Ex. "aliens", "presidents", "Italy"...'>
                                 </div>
                             </form>
-                            <button class="hollow button" href="#">Submit</button>
+                            <button class="hollow button" ID="bookSubmit">Submit</button>
                         </div>
                     </li>
                     <!-- 3. ACCORDION: LIBRARIES: Find a library near me! -->
@@ -135,17 +135,11 @@
                             <button class="hollow button" href="#">Submit</button>
                         </div>
                     </li>
-                    <!-- ... -->
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- REVEAL -->
-    <div class="hide reveal-modal" id="choiceModal">
-    </div>
-
-    
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
     <script>
@@ -153,11 +147,6 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/script.js"></script>
-    <!-- <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkWn72ID7mx-gdIlXW5iUCHaT8-O-3lBA&libraries=places&callback=initMap">
-    </script> -->
-
-
 </body>
 
 </html>
