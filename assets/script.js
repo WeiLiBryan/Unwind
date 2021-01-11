@@ -23,7 +23,6 @@ $(document).ready(function () {
 
     // ONCE SAVE BUTTON FOR BOOK FIELDS IS CLICKED
     $('#bookSubmit').on("click", function () {
-        $("#bookRecs").empty();
         readingPreferences();
     });
 
@@ -115,11 +114,12 @@ $(document).ready(function () {
     }
 
     function readingPreferences() {
-        var genre = $('.genre').val();
+        var genre = $('#genre').val();
         var userSpec = $('#keyword').val();
+        console.log("User's keyword: " + userSpec);
         var bookList = [];
 
-        var queryURL = "https://cors-anywhere.herokuapp.com/https://www.googleapis.com/books/v1/volumes?q=subject:" + genre + "&intitle:" + userSpec;
+        var queryURL = "https://www.googleapis.com/books/v1/volumes?q=subject:" + genre + "&intitle:" + userSpec;
         console.log(queryURL);
         $.ajax({
             url: queryURL,
@@ -137,6 +137,7 @@ $(document).ready(function () {
                 bookList.push(tempOBJ);
             }
 
+            $("#bookRecs").empty();
             generatePreviewSkeleton("book");
             generateBookPreview(bookList);
 
@@ -282,4 +283,3 @@ $(document).ready(function () {
     }
 
 });
-
