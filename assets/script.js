@@ -23,6 +23,7 @@ $(document).ready(function () {
 
     // ONCE SAVE BUTTON FOR BOOK FIELDS IS CLICKED
     $('#bookSubmit').on("click", function () {
+        $("#bookRecs").empty();
         readingPreferences();
     });
 
@@ -94,7 +95,7 @@ $(document).ready(function () {
 
                 latNlon.push(tempOBJ);
             }
-            generateModal("location");
+            generatePreviewSkeleton("location");
             drawMap(latNlon);
             generateLocationPreview(latNlon);
         });
@@ -114,12 +115,12 @@ $(document).ready(function () {
     }
 
     function readingPreferences() {
-        var genre = $('.GENRE-INPUT-DROPDOWN').val();
-        var userSpec = $('.SPEC-USER-INPUT').val();
+        var genre = $('.genre').val();
+        var userSpec = $('#keyword').val();
         var bookList = [];
 
         var queryURL = "https://cors-anywhere.herokuapp.com/https://www.googleapis.com/books/v1/volumes?q=subject:" + genre + "&intitle:" + userSpec;
-
+        console.log(queryURL);
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -128,6 +129,7 @@ $(document).ready(function () {
 
             for (var k = 0; k < 10; k++) {
                 var tempOBJ = { isbn: "", author: "", title: "", thumbnail: "" }
+
                 tempOBJ.title = response.items[k].volumeInfo.title;
                 tempOBJ.author = response.items[k].volumeInfo.authors;
                 tempOBJ.isbn = response.items[k].volumeInfo.industryIdentifiers[0].identifier;
@@ -135,6 +137,7 @@ $(document).ready(function () {
                 bookList.push(tempOBJ);
             }
 
+            generatePreviewSkeleton("book");
             generateBookPreview(bookList);
 
         });
@@ -226,11 +229,11 @@ $(document).ready(function () {
         }
     }
 
-    // BUILDS HTML SKELETON FOR A LOCATION SELECTION PREVIEW
-    function generateModal(str) {
+    // BUILDS HTML SKELETON FOR A LOCATION OR BOOK SELECTION PREVIEW
+    function generatePreviewSkeleton(str) {
         $("#choiceModal").empty();
 
-        // BUILD LOCATION MODAL 
+        // BUILD LOCATION PREVIEW 
         if (str = "location") {
             var container = $("<div>").attr("class", "grid-x");
             var leftColumn = $("<div>").attr("class", "small-6-cell").attr("id", "locationMap");
@@ -256,8 +259,8 @@ $(document).ready(function () {
             $("#relaxationSpot").append(container);
 
         }
+        //BUILD BOOK PREVIEW
         else if (str === "book") {
-            //BUILD BOOK MODAL
             var container = $("<div>").attr("class", "grid-x");
 
             var topRow = $("<div>").attr("class", "grid-x");
@@ -274,7 +277,7 @@ $(document).ready(function () {
             bottomRow.append(book3).append(book4).append(book5);
             container.append(topRow);
 
-            $("#BOOK APPEND TARGET").append(container);
+            $("#bookRecs").append(container);
         }
     }
 

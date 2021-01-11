@@ -62,26 +62,25 @@
                     <!-- 2. ACCORDION: Books for Me -->
                     <li class="accordion-item" data-accordion-item>
                         <a href="#" class="accordion-title">Books For Me</a>
-                        <div class="accordion-content" data-tab-content>
+                        <div class="accordion-content" ID="bookRecs" data-tab-content>
 
                             <!-- Form for the dropdown with selection of book genres -->
                             <form>
                                 <div>
                                     <label>Book Genres</label>
                                     <select>
-                                        <option>All</option>
-                                        <option>Romance</option>
-                                        <option>Mystery</option>
-                                        <option>Fantasy</option>
-                                        <option>Sci-Fi</option>
-                                        <option>Horror</option>
-                                        <option>Young Adult</option>
-                                        <option>Non-Fiction</option>
+                                        <option>All</option> /option>
+                                        <option class="genre">Mystery</option>
+                                        <option class="genre">Fantasy</option>
+                                        <option class="genre">Sci-Fi</option>
+                                        <option class="genre">Horror</option>
+                                        <option class="genre">Young Adult</option>
+                                        <option class="genre">Non-Fiction</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label>What do you want to read about?</label>
-                                    <input type="text" placeholder='Ex. "aliens", "presidents", "Italy"...'>
+                                    <input type="text" ID="keyword" placeholder='Ex. "aliens", "presidents", "Italy"...'>
                                 </div>
                             </form>
                             <button class="hollow button" ID="bookSubmit">Submit</button>
