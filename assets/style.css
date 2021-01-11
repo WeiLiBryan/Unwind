@@ -1,5 +1,6 @@
 body, html {
     height: 100%;
+    
 }
 
 .hero-image {
@@ -52,6 +53,10 @@ header {
     margin: 20px;
 }
 
+label {
+    color: green;
+    opacity: 0.5;
+}
 
    
 
