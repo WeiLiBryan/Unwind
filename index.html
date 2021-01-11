@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -74,24 +75,24 @@
                 <!-- 2. ACCORDION: Books for Me -->
                 <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Books For Me</a>
-                    <div class="accordion-content" data-tab-content>
+                    <div class="accordion-content" ID="bookRecs" data-tab-content>
                         <form>
                             <div>
                                 <label>Book Genres</label>
-                                <select>
-                                    <option value="All">All</option>
-                                    <option value="Romance">Romance</option>
-                                    <option value="Mystery">Mystery</option>
-                                    <option value="Fantasy">Fantasy</option>
-                                    <option value="Sci-Fi">Sci-Fi</option>
-                                    <option value="Horror">Horror</option>
-                                    <option value="Young Adult">Young Adult</option>
-                                    <option value="Non-Fiction">Non-Fiction</option>
+                                <select ID="genre">
+                                    <option>All</option>
+                                    <option>Romance</option>
+                                    <option>Mystery</option>
+                                    <option>Fantasy</option>
+                                    <option>Sci-Fi</option>
+                                    <option>Horror</option>
+                                    <option>Young Adult</option>
+                                    <option>Non-Fiction</option>
                                 </select>
                             </div>
                             <div>
                                 <label>What do you want to read about?</label>
-                                <input type="text" placeholder='Ex. "aliens", "presidents", "Italy"...'>
+                                <input type="text" ID="keyword" placeholder='Ex. "aliens", "presidents", "Italy"...'>
                             </div>
                         </form>
                         <button class="hollow button" href="#">Submit</button>
@@ -144,6 +145,7 @@
                                 <span class="show-for-sr">Open Now</span>
                             </label>
                         </div>
+
                         <button class="hollow button" href="#">Submit</button>
                     </div>
                 </li>
@@ -193,11 +195,11 @@
     <script src="https://kit.fontawesome.com/a7978ebb6a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
-
     <script>
         $(document).foundation();
     </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/script.js"></script>
 </body>
 
 </html>
