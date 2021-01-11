@@ -5,150 +5,192 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation Starter Template</title>
+    <title>Unwind: Be a human.</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Compressed CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
         integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
-
-    <!-- Compressed JavaScript -->
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="/assets/style.css" /> -->
 </head>
 
-<!-- Hero Image -->
-<!-- <div class="hero-image">
-    <div class="hero-text">
-        <h1>I am John Doe</h1>
-        <p>And I'm a Photographer</p>
-        <button>Hire me</button>
-    </div>
-</div> -->
-
 <body>
-    <h1>Unwind: <small>Be a human.</small></h1>
-    <p>Insert the story of the app here. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet assumenda
-        cumque earum ducimus? Veniam,
-        voluptate est. Dignissimos alias possimus at iste quia illo accusantium excepturi quisquam, harum amet! Quod,
-        quo.</p>
+    <div class="hero-image">
+        <div class="hero-text">
+            <h1>Unwind:</h1>
+            <h2><small>Be a human.</small></h2>
+            <p>
+                In an age where being plugged in is an expectation, we invite you to Unwind. We'll help you find a quiet
+                park or a nice coffee shop, a good book, and even a library to pick up your own bit of "uniquely
+                portable magic". So log off, put down your phone, and enjoy the things that make us human.
+            </p>
+            <p style="font-size: small;">Scroll down</p>
+            <p><i class="fas fa-chevron-down"></i></p>
 
-    <!-- "Is active" class means it opens automatically. I probably only want this for the first one.  -->
-    <!-- 1. ACCORDION : Parks Near Me -->
-    <div class="grid-x grid-padding-x">
-        <div class="large-2 cell">
-            <div class="search-results-div" style="border:1px solid grey">
-                <p>Relaxation Menu:</p>
-            </div>
-        </div>
-        <div class="large-10 cell">
-            <div class="accordion-div">
-                <ul class="accordion" data-accordion>
-                    <li class="accordion-item is-active" data-accordion-item>
-                        <a href="#" class="accordion-title">Parks Near Me</a>
-                        <div class="accordion-content" data-tab-content>
-                            <!-- Here inser the form for the zipcode -->
-                            <form>
-                                <div>
-                                    <label>Zip Code</label>
-                                    <input type="text" placeholder="Enter 5 digit zipcode">
-                                </div>
-                            </form>
-                            <button class="hollow button" href="#">Submit</button>
-                            <!-- <p></p>
-                            <a href="#">Nowhere to Go</a> -->
-                        </div>
-                    </li>
-                    <!-- 2. ACCORDION: Books for Me -->
-                    <li class="accordion-item" data-accordion-item>
-                        <a href="#" class="accordion-title">Books For Me</a>
-                        <div class="accordion-content" data-tab-content>
-
-                            <!-- Form for the dropdown with selection of book genres -->
-                            <form>
-                                <div>
-                                    <label>Book Genres</label>
-                                    <select>
-                                        <option>All</option>
-                                        <option>Romance</option>
-                                        <option>Mystery</option>
-                                        <option>Fantasy</option>
-                                        <option>Sci-Fi</option>
-                                        <option>Horror</option>
-                                        <option>Young Adult</option>
-                                        <option>Non-Fiction</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label>What do you want to read about?</label>
-                                    <input type="text" placeholder='Ex. "aliens", "presidents", "Italy"...'>
-                                </div>
-                            </form>
-                            <button class="hollow button" href="#">Submit</button>
-                        </div>
-                    </li>
-                    <!-- 3. ACCORDION: LIBRARIES: Find a library near me! -->
-                    <li class="accordion-item" data-accordion-item>
-                        <a href="#" class="accordion-title">Libraries Near Me</a>
-                        <div class="accordion-content" data-tab-content>
-                            <form>
-                                <div>
-                                    <label>Wondering where to pick up your book? Find a library near you!</label>
-                                    <input type="text" placeholder="Enter 5 digit zipcode">
-                                </div>
-                            </form>
-                            <button class="hollow button" href="#">Submit</button>
-                        </div>
-                    </li>
-                    <!-- 3. ACCORDION: Weather: Should I read outside? -->
-                    <li class="accordion-item" data-accordion-item>
-                        <a href="#" class="accordion-title">Weather: Should I unwind outside?</a>
-                        <div class="accordion-content" data-tab-content>
-                            <form>
-                                <div>
-                                    <label>Should you brave the elements today?</label>
-                                    <input type="text" placeholder="Enter 5 digit zipcode to find out!">
-                                </div>
-                            </form>
-                            <button class="hollow button" href="#">Submit</button>
-
-                        </div>
-                    </li>
-                    <!-- 4. ACCORDION: Coffee Shops Near: I'd like to avoid the weather   -->
-                    <li class="accordion-item" data-accordion-item>
-                        <a href="#" class="accordion-title">Coffee Shops Near Me: Let's avoid the weather today!</a>
-                        <div class="accordion-content" data-tab-content>
-                            <form>
-                                <div>
-                                    <label>Raining today? Or do you just hate the sun? Find a coffee shop
-                                        instead.</label>
-                                    <input type="text" placeholder="Enter 5 digit zipcode">
-                                </div>
-                            </form>
-                            <!-- Inspecting the value of the underlying input should be done by evaluating the checked property of said input. -->
-                            <div class="switch tiny">
-                                <input class="switch-input" id="tinySwitch" type="checkbox" name="openNowSwitch">
-                                <label class="switch-paddle" for="tinySwitch">
-                                    <span class="show-for-sr">Open Now</span>
-                                </label>
-                            </div>
-                            <button class="hollow button" href="#">Submit</button>
-                        </div>
-                    </li>
-                    <!-- ... -->
-                </ul>
-            </div>
         </div>
     </div>
+
+    <div class="grid-x grid-padding-x">
+        <header id="header">
+            <h2>Unwind: <small class="accordion-text" style="opacity: 0.5">Be a human.</small></h2>
+        </header>
+    </div>
+    <!-- <div class="grid-x grid-padding-x">
+        <div class="cell">
+            <h2>Unwind: <small class="accordion-text">Be a human.</small></h2>
+        </div>
+    </div> -->
+
+    <div class="grid-x grid-padding-x">
+        <div class="large-2 cell" data-sticky-container>
+            <div class="card sticky" data-sticky data-margin-top="0" data-top-anchor="header:bottom"
+                style="width: 190px;">
+                <div class="card-divider">
+                    Relaxation Menu
+                </div>
+            </div>
+        </div>
+
+        <!-- "Is active" class means it opens automatically. Probably only want this for the first one.-->
+        <!-- 1. ACCORDION : Parks Near Me -->
+        <div class="large-10 cell">
+            <!-- <div class="accordion-div"> -->
+            <ul class="accordion" data-accordion data-multi-expand="true">
+                <li class="accordion-item is-active" data-accordion-item>
+                    <a href="#" class="accordion-title">Parks Near Me</a>
+                    <div class="accordion-content" data-tab-content>
+                        <form>
+                            <div>
+                                <label>Zip Code</label>
+                                <input type="text" class="zipInputField" placeholder="Enter 5 digit zipcode">
+                            </div>
+                        </form>
+                        <button class="hollow button zipCodeInput" href="#">Submit</button>
+                    </div>
+                </li>
+
+                <!-- 2. ACCORDION: Books for Me -->
+                <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Books For Me</a>
+                    <div class="accordion-content" data-tab-content>
+                        <form>
+                            <div>
+                                <label>Book Genres</label>
+                                <select>
+                                    <option value="All">All</option>
+                                    <option value="Romance">Romance</option>
+                                    <option value="Mystery">Mystery</option>
+                                    <option value="Fantasy">Fantasy</option>
+                                    <option value="Sci-Fi">Sci-Fi</option>
+                                    <option value="Horror">Horror</option>
+                                    <option value="Young Adult">Young Adult</option>
+                                    <option value="Non-Fiction">Non-Fiction</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>What do you want to read about?</label>
+                                <input type="text" placeholder='Ex. "aliens", "presidents", "Italy"...'>
+                            </div>
+                        </form>
+                        <button class="hollow button" href="#">Submit</button>
+                    </div>
+                </li>
+
+                <!-- 3. ACCORDION: LIBRARIES: Find a library near me! -->
+                <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Libraries Near Me</a>
+                    <div class="accordion-content" data-tab-content>
+                        <form>
+                            <div>
+                                <label>Wondering where to pick up your book? Find a library near you!</label>
+                                <input type="text" placeholder="Enter 5 digit zipcode">
+                            </div>
+                        </form>
+                        <button class="hollow button" href="#">Submit</button>
+                    </div>
+                </li>
+
+                <!-- 3. ACCORDION: Weather: Should I read outside? -->
+                <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Weather: Should I unwind outside?</a>
+                    <div class="accordion-content" data-tab-content>
+                        <form>
+                            <div>
+                                <label>Should you brave the elements today?</label>
+                                <input type="text" placeholder="Enter 5 digit zipcode to find out!">
+                            </div>
+                        </form>
+                        <button class="hollow button" href="#">Submit</button>
+                    </div>
+                </li>
+
+                <!-- 4. ACCORDION: Coffee Shops Near: I'd like to avoid the weather   -->
+                <li class="accordion-item" data-accordion-item>
+                    <a href="#" class="accordion-title">Coffee Shops Near Me: Let's avoid the weather today!</a>
+                    <div class="accordion-content" data-tab-content>
+                        <form>
+                            <div>
+                                <label>Raining today? Or do you just hate the sun? Find a coffee shop
+                                    instead.</label>
+                                <input type="text" placeholder="Enter 5 digit zipcode">
+                            </div>
+                        </form>
+                        <!-- Inspecting the value of the underlying input should be done by evaluating the checked property of said input. -->
+                        <div class="switch tiny">
+                            <input class="switch-input" id="tinySwitch" type="checkbox" name="openNowSwitch">
+                            <label class="switch-paddle" for="tinySwitch">
+                                <span class="show-for-sr">Open Now</span>
+                            </label>
+                        </div>
+                        <button class="hollow button" href="#">Submit</button>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- ASPIRATIONAL PROGESS BAR -->
+            <!-- <div class="progress" role="progressbar" tabindex="0" aria-valuenow="" aria-valuemin="0"
+                aria-valuetext="25 percent" aria-valuemax="100">
+                <span class="progress-meter" style="width: 25%">
+                    <span class="progress-meter-text">25%</span>
+                </span>
+            </div> -->
+
+        </div>
+    </div>
+
+    <hr>
+    <div class="footer">
+        <h5>Unwind</h5>
+        <p><a href="#">William Bryan </a><a href="#">Coleman Buffa </a><a href="#">Pamela Gutierrez</a></p>
+    </div>
+
+
 
     <!-- REVEAL -->
     <div class="reveal" id="exampleModal1" data-reveal>
         <div class="modalContent"></div>
+        <div class="grid-x">
+            <div class="small-4 cell">CARD ONE</div>
+            <div class="small-4 cell">CARD TWO</div>
+            <div class="small-4 cell">CARD THREE</div>
+        </div>
+        <div class="grid-x">
+            <div class="small-4 cell">CARD ONE</div>
+            <div class="small-4 cell">CARD TWO</div>
+            <div class="small-4 cell">CARD THREE</div>
+        </div>
         <button class="close-button" data-close aria-label="Close modal" type="button">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/assets/script.js"></script>
+    <script src="https://kit.fontawesome.com/a7978ebb6a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 
