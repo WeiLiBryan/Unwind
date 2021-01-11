@@ -10,7 +10,7 @@ $(document).ready(function() {
         var zipCode = $(".zipInputField").val().trim();
 
         // EMPTY ZIP FIELD TO PREPARE FOR MAP + LOCATION CARDS
-        $(".location").empty();
+        $("#choiceModal").empty();
 
         if (zipCode.length === 5) {
             checkWeather(zipCode);
@@ -33,11 +33,11 @@ $('.LIBRARY-ZIP-CODE-BTN-SUBMIT').on("click", function() {
 
 // ONCE LOCATION CARD IS CLICKED
 $('.locationOption').on("click", function() {
-    // SELECTS BOOK CHOICE CLASS/DIV ON SIDEBAR AND SAVES THE BOOK NAME TO IT
+    // SELECTS BOOK CHOICE CLASS/DIV ON SIDEBAR AND SAVES THE LOCATION CARD TO IT
     $('.locationChoice').text(this.data);
 
     // HIDES THE MODAL ONCE THE CARD IS CLICKED
-    $('.MODAL-CLASS').attr('display', 'none');
+    $('#choiceModal').attr('display', 'none');
 });
 
 // ONCE BOOK CARD IS CLICKED
@@ -94,7 +94,6 @@ function locate(zipCode, location) {
 
             latNlon.push(tempOBJ);
         }
-        console.log(latNlon);
         generateModal("location");
         drawMap(latNlon);
         generateLocationPreview(latNlon);
@@ -232,6 +231,7 @@ function generateBookPreview(bookList) {
 
 // GENERATES CARDS FOR THE LOCATION
 function generateLocationPreview(latNlon) {
+    console.log("entered into location preview function");
 
     for (var l=0; l<latNlon.length; l++){
         // CARD DIV
@@ -243,11 +243,11 @@ function generateLocationPreview(latNlon) {
         // TITLE DIV
         var cardHeader = $('<div>');
         cardHeader.attr('class', 'card-divider');
-        cardHeader.text(latNlon[l].title);
+        cardHeader.text((l+1) + ") " + latNlon[l].title);
         
-        // THUMBNAIL
-        var thumbnail = $('<img>');
-        thumbnail.attr('src', latNlon[l].thumbnail);
+        // // THUMBNAIL
+        // var thumbnail = $('<img>');
+        // thumbnail.attr('src', latNlon[l].thumbnail);
 
         // CONTAINER FOR ADDRESS
         var contentContainer = $('<div>');
@@ -263,7 +263,7 @@ function generateLocationPreview(latNlon) {
 
         // APPEND HEADER, THUMBNAIL AND CARD CONTENT TO CARD DIV
         card.append(cardHeader);
-        card.append(thumbnail);
+        // card.append(thumbnail);
         card.append(contentContainer);
 
         // APPENDS TO WHERE WE WILL PUT THE BOOKS
@@ -271,38 +271,39 @@ function generateLocationPreview(latNlon) {
     }
 }
 
+// BUILDS HTML SKELETON FOR A MODAL TO DISPLAY 6 LOCATION OR BOOK SELECTIONS
 function generateModal(str) {
-    
-    // BUILD LOCATION MODAL
+    $("#choiceModal").empty();
+
+    // BUILD LOCATION MODAL 
     if (str = "location"){
-        var body = $('modalContent');
-        // var row = $("<div>");
-        // row.attr('class', 'grid-x');
-        // var col = $("<div>");
-        // col.attr('class', 'cell-small-6');
-        // row.append(col);
-        // row.append(col);
-        var html = '<div class="grid-x">';
-            html+= '<div class = "small-6-cell" ID="locationMap">MAP</div>';
-            html+= '<div class="small-6-cell">';
-            html+= '<div class="grid-x">';
-            html+= '<div class ="small-4-cell" ID="location0">CARD ONE</div>';
-            html+= '<div class ="small-4-cell" ID="location1">CARD 2</div>';
-            html+= '<div class ="small-4-cell" ID="location2">CARD 3</div>';
-            html+= '</div>';
-            html+= '<div class="grid-x">';
-            html+= '<div class ="small-4-cell" ID="location3">CARD 4</div>';
-            html+= '<div class ="small-4-cell" ID="location4">CARD 5</div>';
-            html+= '<div class ="small-4-cell" ID="location5">CARD 6</div>';
-            html+= '</div>';
-            html+= '</div>';
-            html+= '</div>';
-            html+= '</div>';
-            // html+= '<button class="close-button" data-close aria-label="Close modal" type="button">';
-            // html+= '<span aria-hidden="true">&times;</span>';
-            // html+= '</button>';
-            html+= '</div>';
-            body.html(html);
+        var container = $("<div>").attr("class", "grid-x");
+        var leftColumn = $("<div>").attr("class", "small-6-cell").attr("id", "locationMap");
+        container.append(leftColumn);
+
+        var rightColumn = $("<div>").attr("class", "small-6-cell");
+
+        var topRow = $("<div>").attr("class", "grid-x");
+        var loc0 = $("<div>").attr("class", "small-4-cell").attr("id", "location0");
+        var loc1 = $("<div>").attr("class", "small-4-cell").attr("id", "location1");
+        var loc2 = $("<div>").attr("class", "small-4-cell").attr("id", "location2");
+        topRow.append(loc0).append(loc1).append(loc2);
+        rightColumn.append(topRow);
+
+        var bottomRow = $("<div>").attr("class", "grid-x");
+        var loc3 = $("<div>").attr("class", "small-4-cell").attr("id", "location3");
+        var loc4 = $("<div>").attr("class", "small-4-cell").attr("id", "location4");
+        var loc5 = $("<div>").attr("class", "small-4-cell").attr("id", "location5");
+        bottomRow.append(loc3).append(loc4).append(loc5);
+        rightColumn.append(bottomRow); 
+        
+        container.append(rightColumn);
+        $("#choiceModal").append(container);
+        $("#choiceModal").removeClass("hide");
+        
+    }
+    else if (str === "book") {
+        //BUILD BOOK MODAL
     }
 }
 
