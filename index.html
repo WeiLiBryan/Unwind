@@ -38,27 +38,20 @@
             <h2>Unwind: <small class="accordion-text" style="opacity: 0.5">Be a human.</small></h2>
         </header>
     </div>
-    <!-- <div class="grid-x grid-padding-x">
-        <div class="cell">
-            <h2>Unwind: <small class="accordion-text">Be a human.</small></h2>
-        </div>
-    </div> -->
+
 
     <div class="grid-x grid-padding-x">
-        <div class="large-2 cell" data-sticky-container>
+        <div class="large-4 cell" data-sticky-container>
             <div class="card sticky" id="summary" data-sticky data-margin-top="0" data-top-anchor="header:bottom"
-                style="width: 190px;">
+                style="width: 100%;">
                 <div class="card-divider">
                     Relaxation Menu
                 </div>
             </div>
         </div>
-
-        <!-- "Is active" class means it opens automatically. Probably only want this for the first one.-->
-        <!-- 1. ACCORDION : Books for me -->
-        <div class="large-10 cell">
-            <!-- <div class="accordion-div"> -->
-            <ul class="accordion" data-accordion data-multi-expand="true">
+        <div class="large-8 cell">
+            <!-- 1. BEGIN ACCORDION: Libraries near me -->
+            <ul class="accordion" data-accordion data-multi-expand="true" data-allow-all-closed="true">
                 <li class="accordion-item is-active" data-accordion-item>
                     <a href="#" class="accordion-title">Books For Me</a>
                     <div class="accordion-content" ID="bookRecs" data-tab-content>
@@ -84,7 +77,7 @@
                         <button class="hollow button" ID="bookSubmit" href="#">Submit</button>
                     </div>
                 </li>
-                <!-- 3. ACCORDION: LIBRARIES: Find a library near me! -->
+                <!-- 2. ACCORDION: LIBRARIES: Find a library near me! -->
                 <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Libraries Near Me</a>
                     <div class="accordion-content" ID="library" data-tab-content>
@@ -98,7 +91,7 @@
                 </li>
 
 
-                <!-- 2. ACCORDION: Parks Near Me -->
+                <!-- 3. ACCORDION: Parks Near Me -->
                 <li class="accordion-item" data-accordion-item>
                     <a href="#" class="accordion-title">Parks Near Me</a>
 
@@ -114,42 +107,20 @@
                 </li>
             </ul>
 
-            <!-- ASPIRATIONAL PROGESS BAR -->
-            <!-- <div class="progress" role="progressbar" tabindex="0" aria-valuenow="" aria-valuemin="0"
-                aria-valuetext="25 percent" aria-valuemax="100">
-                <span class="progress-meter" style="width: 25%">
-                    <span class="progress-meter-text">25%</span>
-                </span>
-            </div> -->
+            <!-- END OF ACCORDION -->
+
+
 
         </div>
     </div>
 
     <hr>
-    <div class="footer">
+
+    <footer class="footer">
         <h5>Unwind</h5>
         <p><a href="#">William Bryan </a><a href="#">Coleman Buffa </a><a href="#">Pamela Gutierrez</a></p>
-    </div>
+    </footer>
 
-
-
-    <!-- REVEAL -->
-    <div class="reveal" id="exampleModal1" data-reveal>
-        <div class="modalContent"></div>
-        <div class="grid-x">
-            <div class="small-4 cell">CARD ONE</div>
-            <div class="small-4 cell">CARD TWO</div>
-            <div class="small-4 cell">CARD THREE</div>
-        </div>
-        <div class="grid-x">
-            <div class="small-4 cell">CARD ONE</div>
-            <div class="small-4 cell">CARD TWO</div>
-            <div class="small-4 cell">CARD THREE</div>
-        </div>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/script.js"></script>
