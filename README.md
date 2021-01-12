@@ -1,7 +1,7 @@
 # Unwind
 Unwind offers the user an all-in-one book, weather, and location search to help them plan an unplugged day of leisure. With our technology we encourage people to slow down, put down their phones, and enjoy a day of reading outside or in a local coffee shop to reconnect with the small joys that make us human. To help the user along the way, we offer location information on local libraries where they can find their book and the daily weather forecast to help them decide if they'd rather vist a park or coffee shop.
 
-![Site](insert image)
+![Site](assets/images/Unwind_ ScreenRecord.gif)
 ## Table of Contents
 |                                     |                                         |                                         |
 | :---------------------------------- | :-------------------------------------- | :-------------------------------------- |
@@ -21,7 +21,7 @@ Project goals and methods goes here...
 * [Google Places API](https://developers.google.com/places/web-service/overview)
 * [Google Books API](https://developers.google.com/books)
 ## Deployed Link
-* [See Live Site](https://coleman-buffa.github.io/weather-dashboard/)
+* [See Live Site](https://weilibryan.github.io/Unwind/)
 ## Authors
 Coleman Buffa
 - [Link to Git Hub](https://github.com/coleman-buffa/)
