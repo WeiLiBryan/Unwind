@@ -10,8 +10,20 @@ Unwind offers the user an all-in-one book, weather, and location search to help 
 | [Acknowledgments](#acknowledgments) | [License](#license)                     |
 ---
 ## Goals and Methods
-The goal of our app is to use several APIs that help the user to put together an experience catered to their interests, location, and local weather conditions. In the design process we layed out the physical layout of the app but also focused on creating a greater narrative to help guide the user experience. We identified a "problem"- the stress of being constantly connected and robotic"- and then offered a solution- be a human and go read a book somewhere. 
+The goal of our app is to use several APIs that help the user to put together an experience catered to their interests, location, and local weather conditions. In the design process we put together the physical layout of the app but also focused on creating a greater narrative to help guide the user experience. We identified a "problem"- the stress of being constantly connected and almost robotic- and then offered a "solution"- be a human and go read a book somewhere. 
 
+Building a mobile-first responsive website was crucial to us and to building any modern application today. To accommplish this, we chose to use Foundation, a popular responsive front-end framework. Their responsive grid system allowed us to easily incorporate breakpoints and manipulate the various UI components of our site. The code snippet below displays the use of the Foundation grid system as well as how we used their built in classes and attributes to determin break points and stick elements to specific parts of the page.
+
+```
+  <div class="grid-x grid-padding-x">
+        <div class="large-4 cell" data-sticky-container>
+            <div class="card sticky" id="summary" data-sticky data-margin-top="0" data-top-anchor="header:bottom"
+                style="width: 100%;">
+                <div class="card-divider">
+                    Relaxation Menu
+                </div>
+            </div>
+```
 
 Project goals and methods goes here...
 ## Technologies 
