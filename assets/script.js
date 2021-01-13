@@ -32,24 +32,6 @@ $(document).ready(function () {
         locate(zipCode, "library");
     });
 
-    // ONCE LOCATION CARD IS CLICKED
-    $('.locationOption').on("click", function () {
-        // SELECTS BOOK CHOICE CLASS/DIV ON SIDEBAR AND SAVES THE LOCATION CARD TO IT
-
-
-        // HIDES THE MODAL ONCE THE CARD IS CLICKED
-        $('#choiceModal').attr('display', 'none');
-    });
-
-    // ONCE BOOK CARD IS CLICKED
-    $('.bookOption').on("click", function () {
-        // SELECTS BOOK CHOICE CLASS/DIV ON SIDEBAR AND SAVES THE BOOK NAME TO IT
-        $('.bookChoice').text(this.data);
-
-        // HIDES THE MODAL ONCE THE CARD IS CLICKED
-        $('.MODAL-CLASS').attr('display', 'none');
-    });
-
     // Convert address tags to google map links - Copyright Michael Jasper 2011
     $('.address').each(function () {
         var link = "<a href='http://maps.google.com/maps?q=" + encodeURIComponent($(this).text()) + "' target='_blank'>" + $(this).text() + "</a>";
@@ -75,8 +57,6 @@ $(document).ready(function () {
         }
     });
 
-
-
     function checkWeather(zipCode) {
 
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipCode + "&appid=" + weatherApiKey;
@@ -85,7 +65,6 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            console.log("Weather response: ", response);
             var weatherDesc = response.weather[0].description;
             if (weatherDesc === "clear sky") {
                 locate(zipCode, "park");
@@ -107,7 +86,6 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            console.log("Google Map Response: ", response);
             // Construct a map making object containing all information needed
             for (var i = 0; i < 6; i++) {
                 var tempOBJ = { lat: "", lon: "", title: "", address: "" };
@@ -118,7 +96,7 @@ $(document).ready(function () {
 
                 latNlon.push(tempOBJ);
             }
-            //Call skeleton for either coffeeshop or park
+            //Call HTML skeleton builder for either coffeeshop or park
             generatePreviewSkeleton(location);            
             drawMap(latNlon, location);
             generateLocationPreview(latNlon, location);
@@ -148,12 +126,10 @@ $(document).ready(function () {
         var bookList = [];
 
         var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + keyword + "&subject:" + genre; 
-        console.log(queryURL);
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            console.log("Book Results: ", response);
 
             for (var k = 0; k < 10; k++) {
                 var tempOBJ = { isbn: "", author: "", title: "", thumbnail: "" }
@@ -165,7 +141,6 @@ $(document).ready(function () {
                 bookList.push(tempOBJ);
             }
 
-            console.log(bookList);
             $("#bookRecs").empty();
             generatePreviewSkeleton("book");
             generateBookPreview(bookList);
@@ -267,10 +242,8 @@ $(document).ready(function () {
             // APPENDS WHERE WE WILL PUT THE LOCATION PREVIEW CARDS
             if ( (str == "park") || (str == "coffeeshop") ) {
                 $('#location' + l).append(card);
-                console.log("Appended to #location");
             } else {
                 $("#library" + l).append(card);
-                console.log("Appended to #library");
 
             }
         }
@@ -350,5 +323,4 @@ $(document).ready(function () {
             $("#bookRecs").append(container);
         }
     }
-
 });
